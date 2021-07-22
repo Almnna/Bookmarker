@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Card, CardMedia, Grid, TextField } from '@material-ui/core';
+import { Button, Card, CardMedia, Grid, TextField, Typography } from '@material-ui/core';
+
 
 export default class Login extends Component {
     constructor(props){
@@ -10,14 +11,6 @@ export default class Login extends Component {
         }
     }
 
-    styles = {
-        container:{
-            marginTop: 75,
-            width: 500,
-            height: 500,
-            backgroundColor: '#74b9ff',
-        }
-    }
 
     setUsername(e){
         this.setState({"username": e.target.value});
@@ -29,24 +22,20 @@ export default class Login extends Component {
 
     render(){
         return (
-            <Grid container direction="row" justify="center" alignItems="center">
-                <Card style={this.styles.container}>
-                    <Grid container>
-                        <div>
-                            Bookmarker
-                        </div>
-                    </Grid>
-                    <Grid container>
-                        <TextField placeholder="Username" onChange={(e)=>this.setUsername}></TextField>
-                    </Grid>
-                    <Grid container>
-                        <TextField placeholder="Password" onChange={(e)=>this.setPassword}></TextField>
-                    </Grid>
-                    <Grid container>
-                        <Button color='primary' onClick={()=>{this.props.updateView('dashboard')}}>Login</Button>
-                    </Grid>
-                </Card>
-            </Grid>
+            <Card style={this.props.styles.container}>
+                <Grid item align="center">
+                    <TextField style={this.props.styles.textinput} variant="outlined" placeholder="Username" onChange={(e)=>this.setUsername}></TextField>
+                </Grid>
+                <Grid item align="center">
+                    <TextField style={this.props.styles.textinput}  variant="outlined" placeholder="Password" onChange={(e)=>this.setPassword}></TextField>
+                </Grid>
+                <Grid item align="center">
+                    <Button style={this.props.styles.login} color='primary' variant="contained" onClick={()=>{this.props.updateView('dashboard')}}>Login</Button>
+                </Grid>
+                <Grid item align="center">
+                    <Typography style={this.props.styles.txt} variant="h7">Don't u have an account? <Button color="primary" onClick={()=>{this.props.updateView('signup')}}>SignUp</Button></Typography>
+                </Grid>
+            </Card>
         );
     }
   }
