@@ -1,9 +1,11 @@
-const {app, BrowserWindow, ipcRenderer} = require('electron');
+const {app, BrowserWindow} = require('electron');
 
 function createWindow(){
     const win = new BrowserWindow({
-        width: 1000,
+        width: 800,
         height: 700,
+        resizable: false,
+        maximizable: false,
         webPreferences: {
             nodeIntegration: true,
         }
