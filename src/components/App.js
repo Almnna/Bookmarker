@@ -62,13 +62,13 @@ export default class App extends Component{
     } 
 
     const title = () => {
-        if(this.state.view == 'login'){
+        if(this.state.view === 'login'){
           return(
             <Typography variant="h4" style={this.styles.title}>
               LOGIN <VpnKey/>
             </Typography>
           )
-        }else if(this.state.view == 'signup'){
+        }else if(this.state.view === 'signup'){
           return(
             <Typography variant="h4" style={this.styles.title}>
               SIGNUP <ExitToAppSharp/>
