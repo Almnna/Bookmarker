@@ -5,6 +5,14 @@ import { styles } from 'ansi-colors';
 export default class Dashboard extends Component{
     constructor(props){
         super();
+        this.defaultLogoutView = 'login';
+        this.bar = false
+    }
+
+    logoutBtnHandler = () => {
+        this.props.updateAppBar(this.bar);
+        console.log("updating appbar to " + this.bar)
+        this.props.updateView(this.defaultLogoutView);
     }
 
     render(){
@@ -13,22 +21,25 @@ export default class Dashboard extends Component{
             container: {
                 width: 500,
                 height: 500,
+                padding: 100,
             }
         }
 
         return(
             <div>
                 <div>
-                    <Button>Logout</Button>
-                    dashboard
+                    <Button onClick={()=>{this.logoutBtnHandler()}}>Logout</Button>
                 </div>
                 <Grid container justifyContent="center" alignItems="center">
                     <Card style={styles.card}>
                         ss
-                        <div spacing={100}>
-                            G
+                        <div>
+                            
                         </div>
                     </Card>
+                </Grid>
+                <Grid container justifyContent="left">
+                    Second
                 </Grid>
             </div>
         );

@@ -9,10 +9,20 @@ import {Bookmarks, VpnKey, ExitToAppSharp} from '@material-ui/icons'
 
 export default class App extends Component{
   state = {
+    bar: false,
     view: 'login',
   }
 
+  updateAppBar = (bar) => {
+    if(bar){
+      this.setState({bar: true})
+    }else{
+      this.setState({bar: false})
+    }
+  }
+
   updateView = (value) => {
+
     this.setState({
       view: value
     });
@@ -51,15 +61,15 @@ export default class App extends Component{
     const currentView = () =>{
       switch (this.state.view) {
         case 'login':
-          return <Login updateView={this.updateView} styles={this.styles} />
+          return <Login updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} />
         case 'signup':
           return <Signup updateView={this.updateView} styles={this.styles} />
         case 'dashboard':
-          return <Dashboard updateView={this.updateView} styles={this.styles} />
+          return <Dashboard updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} />
         default:
-          return <Login updateView={this.updateView} styles={this.styles} />
+          return <Login updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} />
       }
-    } 
+    }
 
     const title = () => {
         if(this.state.view === 'login'){
@@ -76,32 +86,72 @@ export default class App extends Component{
           )
         }
     }
-    return(
-      <>
-        <CssBaseline />
-        <AppBar position="relative" color="#fff">
-          <Toolbar>
-            <Bookmarks />
-            <Typography variant="h4">Bookmarker</Typography>
-          </Toolbar>
-        </AppBar>
-        <main>
-          <div>
-            <Container maxWidth="sm">
-              <Typography style={this.styles.font} variant="h4" align="center" color="black" gutterBottom>
-                {title()}
-              </Typography>
+
+    const isAppBar = () => {
+      if(this.state.bar){
+          return(
               <div>
-                <Grid container spacing={2} justify="center">
-                  <Grid item>
-                    {currentView()}
-                  </Grid>
-                </Grid>
+                  <AppBar position="relative" color="#fff">
+                    <CssBaseline />
+                    <Toolbar>
+                      <Bookmarks />
+                      <Typography variant="h4">Bookmarker</Typography>
+                    </Toolbar>
+                  </AppBar>
+              <main>
+              <div>
+                  <Container maxWidth="sm">
+                    <Typography style={this.styles.font} variant="h4" align="center" color="black" gutterBottom>
+                      {title()}
+                    </Typography>
+                    <div>
+                      <Grid container spacing={2} justify="center">
+                        <Grid item>
+                          {currentView()}
+                        </Grid>
+                      </Grid>
+                    </div>
+                  </Container>
+                </div>
+              </main>
               </div>
-            </Container>
-          </div>
-        </main>
-      </>
-    )
-  }
+            )
+          }else{
+            return(
+              <div>
+                  {/* <AppBar position="relative" color="#fff">
+                    <CssBaseline />
+                    <Toolbar>
+                      <Bookmarks />
+                      <Typography variant="h4">Bookmarker</Typography>
+                    </Toolbar>
+                  </AppBar> */}
+                <main>
+                  <div>
+                    <Container maxWidth="sm">
+                      <Typography style={this.styles.font} variant="h4" align="center" color="black" gutterBottom>
+                        {title()}
+                      </Typography>
+                      <div>
+                        <Grid container spacing={2} justify="center">
+                          <Grid item>
+                            {currentView()}
+                          </Grid>
+                        </Grid>
+                      </div>
+                    </Container>
+                  </div>
+                </main>
+              </div>
+            )
+          }
+        }
+
+        return(
+          <>
+            {console.log(this.state.bar)}
+            {isAppBar()}
+          </>
+        )
+    }
 }

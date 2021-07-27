@@ -9,6 +9,7 @@ export default class Login extends Component {
             username: '',
             password: ''
         }
+        let bar = true;
     }
 
 
@@ -18,6 +19,11 @@ export default class Login extends Component {
 
     setPassword(e){
         this.setState({"password": e.target.value});
+    }
+
+    loginBtnHandler(view, bar){
+        this.props.updateAppBar(bar);
+        this.props.updateView(view);
     }
 
     render(){
@@ -30,7 +36,7 @@ export default class Login extends Component {
                     <TextField style={this.props.styles.textinput}  variant="outlined" placeholder="Password" onChange={(e)=>this.setPassword}></TextField>
                 </Grid>
                 <Grid item align="center">
-                    <Button style={this.props.styles.login} color='primary' variant="contained" onClick={()=>{this.props.updateView('dashboard')}}>Login</Button>
+                    <Button style={this.props.styles.login} color='primary' variant="contained" onClick={()=>{this.loginBtnHandler('dashboard', true)}}>Login</Button>
                 </Grid>
                 <Grid item align="center">
                     <Typography style={this.props.styles.txt} variant="h7">Don't u have an account? <Button color="primary" onClick={()=>{this.props.updateView('signup')}}>SignUp</Button></Typography>
@@ -38,4 +44,4 @@ export default class Login extends Component {
             </Card>
         );
     }
-  }
+}
