@@ -11,6 +11,24 @@ export default class App extends Component{
   state = {
     bar: false,
     view: 'login',
+    username: '',
+    password: '',
+  }
+
+  setUsername = (e) =>{
+    this.setState({"username": e.target.value});
+  }
+
+  getUsername = () =>{
+    return this.state.username;
+  }
+
+  setPassword = (e) =>{
+      this.setState({"password": e.target.value});
+  }
+
+  getPassword = () =>{
+    return this.state.password;
   }
 
   updateAppBar = (bar) => {
@@ -35,6 +53,13 @@ export default class App extends Component{
         width: 400,
         backgroundColor: 'white',
     },
+    loginCardContainer:{
+      paddingTop: 50,
+      marginTop: 30,
+      paddingBottom: 20,
+      width: 400,
+      backgroundColor: 'white',
+    },
     margin: {
         margin: 10,
     },
@@ -51,7 +76,7 @@ export default class App extends Component{
         marginTop: 5,
     },
     title:{
-      marginTop: 20,
+      marginTop: 80,
       marginBottom: 10,
     }
   }
@@ -61,13 +86,17 @@ export default class App extends Component{
     const currentView = () =>{
       switch (this.state.view) {
         case 'login':
-          return <Login updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} />
+          return <Login  updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} 
+          setUsername={this.setUsername}  setPassword={this.setPassword}
+          username={this.getUsername} password={this.getPassword}/>
         case 'signup':
           return <Signup updateView={this.updateView} styles={this.styles} />
         case 'dashboard':
           return <Dashboard updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} />
         default:
-          return <Login updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} />
+          return <Login updateView={this.updateView} updateAppBar={this.updateAppBar}
+            setUsername={this.setUsername}  setPassword={this.setPassword}
+            styles={this.styles} username={this.getUsername} password={this.getPassword}/>
       }
     }
 
