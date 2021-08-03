@@ -11,8 +11,9 @@ export default class Dashboard extends Component{
 
     logoutBtnHandler = () => {
         this.props.updateAppBar(this.bar);
-        console.log("updating appbar to " + this.bar)
-        this.props.updateView(this.defaultLogoutView);
+        this.props.logoutUser(this.props.getUsername());
+        // console.log("updating appbar to " + this.bar)
+        // this.props.updateView(this.defaultLogoutView);
     }
 
     render(){
@@ -32,14 +33,13 @@ export default class Dashboard extends Component{
                 </div>
                 <Grid container justifyContent="center" alignItems="center">
                     <Card style={styles.card}>
-                        ss
                         <div>
                             
                         </div>
                     </Card>
                 </Grid>
                 <Grid container justifyContent="left">
-                    Second
+                    Username: {this.props.getUsername()}
                 </Grid>
             </div>
         );

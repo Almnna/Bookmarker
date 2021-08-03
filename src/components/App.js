@@ -39,11 +39,39 @@ export default class App extends Component{
     }
   }
 
-  updateView = (value) => {
+  clearInputs = () => {
+    this.state.username = "";
+  }
 
+  logoutUser = (username) => {
+    this.clearInputs();
+    this.updateView('login');
+    alert(` 👋 \n\n See You Later ${username} !`);
+  }
+
+  isLoggedIn = () => {
+    if(this.state.username !== ""){
+      return true;
+    }
+    return false;
+  }
+
+  logInUser = (user) => {
+    this.state.username = user;
+    this.updateView('dashboard');
+  }
+
+  updateView = (value) => {
+    if(this.state.view === "login" && value === "signup"){
+      this.clearInputs()
+    }
     this.setState({
       view: value
     });
+  }
+
+  createAccount = (username, password) => {
+
   }
 
   styles = {
@@ -86,17 +114,20 @@ export default class App extends Component{
     const currentView = () =>{
       switch (this.state.view) {
         case 'login':
+          if(this.isLoggedIn()){
+            this.updateView("dashboard")
+          }
           return <Login  updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} 
           setUsername={this.setUsername}  setPassword={this.setPassword}
-          username={this.getUsername} password={this.getPassword}/>
+          getUsername={this.getUsername} getPassword={this.getPassword} logInUser={this.logInUser}/>
         case 'signup':
-          return <Signup updateView={this.updateView} styles={this.styles} />
+          return <Signup updateView={this.updateView} createAccount={this.createAccount} setUsername={this.setUsername} getUsername={this.getUsername} styles={this.styles} />
         case 'dashboard':
-          return <Dashboard updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles} />
+          return <Dashboard updateView={this.updateView} logoutUser={this.logoutUser} updateAppBar={this.updateAppBar} getUsername={this.getUsername} styles={this.styles} />
         default:
-          return <Login updateView={this.updateView} updateAppBar={this.updateAppBar}
+          return <Login updateView={this.updateView} updateAppBar={this.updateAppBar} styles={this.styles}
             setUsername={this.setUsername}  setPassword={this.setPassword}
-            styles={this.styles} username={this.getUsername} password={this.getPassword}/>
+            getUsername={this.getUsername} getPassword={this.getPassword} logInUser={this.logInUser}/>
       }
     }
 
@@ -110,7 +141,7 @@ export default class App extends Component{
         }else if(this.state.view === 'signup'){
           return(
             <Typography variant="h4" style={this.styles.title}>
-              SIGNUP <ExitToAppSharp/>
+              Create New Account <ExitToAppSharp/>
             </Typography>
           )
         }
