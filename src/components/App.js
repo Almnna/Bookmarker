@@ -5,6 +5,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Dashboard from './dashboard';
 import {Bookmarks, VpnKey, ExitToAppSharp} from '@material-ui/icons'
+import shadows from '@material-ui/core/styles/shadows';
 
 
 export default class App extends Component{
@@ -86,14 +87,17 @@ export default class App extends Component{
       marginTop: 30,
       paddingBottom: 20,
       width: 400,
-      backgroundColor: 'white',
+      backgroundColor: '#2C2E43',
     },
     margin: {
         margin: 10,
     },
     textinput:{
         width: '80%',
+        backgroundColor: "#11052C",
+        borderRadius: 10,
         margin: 10,
+        color: '#fff',
     },
     login:{
         marginTop: 30,
@@ -106,6 +110,15 @@ export default class App extends Component{
     title:{
       marginTop: 80,
       marginBottom: 10,
+    },
+    buttons:{
+      width: 300,
+      margin: 30,
+      borderWidth: 2,
+      backgroundColor: "#238636",
+      borderColor: "#2ea043",
+      color: "#fff",
+      fontSize: 12,
     }
   }
 
