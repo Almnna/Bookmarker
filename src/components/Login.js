@@ -44,20 +44,25 @@ export default class Login extends Component {
         }
     }
 
+    // style = {
+    //     .TextField.selected:{
+            
+    //     }
+    // }
     render(){
         return (
             <Card style={this.props.styles.loginCardContainer}>
                 <Grid item align="center">
-                    <TextField style={this.props.styles.textinput} variant="outlined" placeholder="Username" value={this.state.username} autoFocus={true} onChange={(e)=>{this.setUsername(e)}}></TextField>
+                    <TextField  style={this.props.styles.textinput} variant="outlined" placeholder="Username" value={this.state.username} autoFocus={true} onChange={(e)=>{this.setUsername(e)}}></TextField>
                 </Grid>
                 <Grid item align="center">
-                    <TextField style={this.props.styles.textinput} color="primary" variant="outlined" type="password" placeholder="Password" value={this.state.password} onChange={(e)=>{this.setPassword(e)}}></TextField>
+                    <TextField style={this.props.styles.textinput} variant="outlined" type="password" placeholder="Password" value={this.state.password} onChange={(e)=>{this.setPassword(e)}}></TextField>
                 </Grid>
                 <Grid item align="center">
                     <Button style={this.props.styles.buttons} variant="outlined" onClick={()=>{this.loginBtnHandler('dashboard', true)}}>Login</Button>
                 </Grid>
                 <Grid item align="center">
-                    <Button color="secondary" variant="outlined" onClick={()=>{this.props.updateView('signup')}}>Create New Account</Button>{/*<Typography style={this.props.styles.txt} variant="h7">Don't u have an account?</Typography>*/}
+                    <Button onClick={()=>{this.props.updateView('signup')}}>Create New Account</Button>{/*<Typography style={this.props.styles.txt} variant="h7">Don't u have an account?</Typography>*/}
                 </Grid>
             </Card>
         );

@@ -23,6 +23,9 @@ export default class Dashboard extends Component{
                 width: 500,
                 height: 500,
                 padding: 100,
+            },
+            card: {
+                backgroundColor: '#fff',
             }
         }
 
@@ -34,7 +37,7 @@ export default class Dashboard extends Component{
                 <Grid container justifyContent="center" alignItems="center">
                     <Card style={styles.card}>
                         <div>
-                            
+                            {this.props.getUsername()}
                         </div>
                     </Card>
                 </Grid>

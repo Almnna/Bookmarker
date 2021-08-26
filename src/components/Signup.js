@@ -61,10 +61,10 @@ export default class Signup extends Component {
                     <TextField style={this.props.styles.textinput}  variant="outlined" placeholder="Confirm Password" type="password" value={this.state.rpassword} onChange={(e)=>this.setRPassword(e)}></TextField>
                 </Grid>
                 <Grid item align="center">
-                    <Button style={this.props.styles.login} color='primary' variant="contained" onClick={()=>{this.confirmDetails()}}>Create</Button>
+                    <Button style={this.props.styles.buttons} variant="outlined" onClick={()=>{this.confirmDetails()}}>Create</Button>
                 </Grid>
                 <Grid item align="center">
-                    <Button color="primary" onClick={()=>{this.props.updateView('login')}}>Login</Button>{/*<Typography style={this.props.styles.txt} variant="h7">Already have an account? </Typography>*/}
+                    <Button onClick={()=>{this.props.updateView('login')}}>Login</Button>{/*<Typography style={this.props.styles.txt} variant="h7">Already have an account? </Typography>*/}
                 </Grid>
             </Card>
         );
